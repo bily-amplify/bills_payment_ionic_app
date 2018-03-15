@@ -1,0 +1,19 @@
+{
+  "name": "Amplify",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.3.1",
+    "plugin": "^4.0.0"
+  },
+  "dependencies": {
+    "satellizer": "^0.15.5",
+    "angular-local-storage": "^0.5.2",
+    "angular-moment": "^1.0.1",
+    "angular-restmod": "^1.1.11",
+    "angular-native-datepicker": "angular-native-picker#^1.0.4"
+  },
+  "resolutions": {
+    "angular": "1.5.3",
+    "angular-sanitize": "1.5.3"
+  }
+}

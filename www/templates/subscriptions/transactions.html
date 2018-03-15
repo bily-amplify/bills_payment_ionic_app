@@ -1,0 +1,44 @@
+<h4 class="text-center">{{subscription.description}} Transactions</h4>
+<table class="table table-responsive table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Reference ID</th>
+        <th>Description</th>
+        <th>Reference No.</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Payment Status</th>
+        <th>Service Status</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="transaction in transactions.data">
+        <td>{{transaction.reference_id}}</td>
+        <td>{{transaction.description}}</td>
+        <td>{{transaction.reference_no}}</td>
+        <td>{{transaction.amount | currency: 'NGN'}}</td>
+        <td>
+            <span ng-show="transaction.status == 'SUCCESS'" class="label label-success">{{transaction.status}}</span>
+            <span ng-show="transaction.status == 'FAILED'" class="label label-danger">{{transaction.status}}</span>
+            <span ng-show="transaction.status == 'PENDING'" class="label label-info">{{transaction.status}}</span>
+        </td>
+        <td>
+            <span ng-show="transaction.payment_status == 'SUCCESS'" class="label label-success">{{transaction.payment_status}}</span>
+            <span ng-show="transaction.payment_status == 'FAILED'" class="label label-danger">{{transaction.payment_status}}</span>
+            <span ng-show="transaction.payment_status == 'PENDING'" class="label label-info">{{transaction.payment_status}}</span>
+        </td>
+        <td>
+            <span ng-show="transaction.service_status == 'SUCCESS'" class="label label-success">{{transaction.service_status}}</span>
+            <span ng-show="transaction.service_status == 'FAILED'" class="label label-danger">{{transaction.service_status}}</span>
+            <span ng-show="transaction.service_status == 'PENDING'" class="label label-info">{{transaction.service_status}}</span>
+        </td>
+        <td>{{transaction.created_at}}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="text-center">
+    <ul uib-pagination total-items="transactions.total" ng-model="currentPage" items-per-page="transactions.per_page"
+        ng-change="pageChanged()" data-ng-show="transactions.total > transactions.per_page"></ul>
+    <p class="label-warning" ng-hide="transactions.data.length">You have no transaction yet.</p>
+</div>

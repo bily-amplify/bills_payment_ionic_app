@@ -1,0 +1,21 @@
+<ion-view view-title="Transactions">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="transaction in data ">
+                <strong>{{transaction.description}}</strong>
+                <p>Reference ID: {{transaction.reference_id}}</p>
+                <p>Reference No: {{transaction.reference_no}}</p>
+                <p>Amount: {{transaction.amount | currency: 'NGN'}}</p>
+                <p>
+                    Status:
+                    <span ng-show="transaction.status == 'SUCCESS'" class="label label-success">{{transaction.status}}</span>
+                    <span ng-show="transaction.status == 'FAILED'" class="label label-danger">{{transaction.status}}</span>
+                    <span ng-show="transaction.status == 'INCOMPLETE'" class="label label-info">{{transaction.status}}</span>
+                </p>
+                <p>{{transaction.created_at |  amDateFormat:'MMMM Do YYYY' }}</p>
+            </ion-item>
+        </ion-list>
+        <button ng-show="hasMore()" ng-click="loadNextPage()" class="button button-balanced button-full">Show More...</button>
+    </ion-content>
+</ion-view>
+

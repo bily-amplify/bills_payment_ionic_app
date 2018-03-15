@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">Sign Up</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeSignup()">
+                <span class="ion-android-close"></span>
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="doSignUp()">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Full Name</span>
+                    <input type="text" ng-model="registrationForm.full_name" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="email" ng-model="registrationForm.email" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Phone Number</span>
+                    <input type="text" ng-model="registrationForm.phone_number" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="registrationForm.password" required>
+                </label>
+                <label class="item alert alert-danger" role="alert" ng-show="error">{{error}}</label>
+                <label class="item">
+                    <button class="button button-block button-balanced" type="submit">Sign Up</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

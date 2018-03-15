@@ -1,0 +1,21 @@
+<h3 class="text-center">Edit {{subscriptionForm.description}}</h3>
+<div class="col-md-12">
+    <form ng-submit="editSubscription()" role="form">
+        <div class="form-group">
+            <label>Package</label>
+            <select name="package" ng-model="selectedPackage" ng-options="package as package.name for package in packages track by package.payment_code"
+                    ng-change="updateSelectedPackage();" class="form-control" required>
+                <option value="">Select Package</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Amount</label>
+            <input name="amount" ng-model="subscriptionForm.amount" required="required" class="form-control" readonly/>
+        </div>
+        <div class="form-group">
+            <label>Smart Card Number</label>
+            <input name="reference_no" ng-model="subscriptionForm.reference_no" required="required" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
+</div>

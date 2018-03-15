@@ -1,0 +1,74 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-balanced">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <!-- TABS -->
+    <ion-tabs class="tabs-icon-top tabs-color-active-balanced">
+      <ion-tab title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" ui-sref="app.home">
+        <ion-nav-view name="tab-home"></ion-nav-view>
+      </ion-tab>
+
+      <!-- Transactions Tab show if user is logged in-->
+      <ion-tab ng-if="isAuthenticated()" title="Transactions" icon-off="ion-grid" icon-on="ion-grid" ui-sref="app.transactions">
+        <ion-nav-view name="tab-transactions"></ion-nav-view>
+      </ion-tab>
+
+      <!-- Subscriptions Tab show if user is logged in-->
+      <ion-tab ng-if="isAuthenticated()" title="Subscriptions" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" ui-sref="app.subscriptions">
+        <ion-nav-view name="tab-subscriptions"></ion-nav-view>
+      </ion-tab>
+
+      <!-- Login Tab show if user is not logged in-->
+      <ion-tab ng-if="!isAuthenticated()" title="Login" icon-off="ion-ios-unlocked-outline" icon-on="ion-ios-unlocked" ng-click="login()">
+        <ion-nav-view name="tab-login"></ion-nav-view>
+      </ion-tab>
+
+      <!-- Sign up Tab show if user is not logged in-->
+      <ion-tab ng-if="!isAuthenticated()" title="Sign Up" icon-off="ion-ios-personadd-outline" icon-on="ion-ios-personadd" ng-click="signup()">
+        <ion-nav-view name="tab-signup"></ion-nav-view>
+      </ion-tab>
+
+    </ion-tabs>
+
+  </ion-side-menu-content>
+
+   <!-- Side Menu (left) -->
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-balanced">
+      <h1 class="title">
+        <span class="ion-person"></span>
+        <span ng-show="isAuthenticated()">{{current_user.full_name}}</span>
+        <span ng-hide="isAuthenticated()">Menu</span>
+      </h1>
+    </ion-header-bar>
+    <ion-content>
+      <!--show list when logged in-->
+      <ion-list ng-show="isAuthenticated()">
+        <ion-item menu-close ui-sref="app.transactions">
+          <span class="ion-grid"></span> Transactions
+        </ion-item>
+        <ion-item menu-close ui-sref="app.subscriptions">
+          <span class="ion-ios-calendar-outline"></span> Subscriptions
+        </ion-item>
+        <ion-item menu-close ng-click="logout()">
+          <span class="ion-ios-locked-outline"></span> Logout
+        </ion-item>
+      </ion-list>
+
+      <!--show list when not log in-->
+      <ion-list ng-hide="isAuthenticated()">
+        <ion-item  menu-close ng-click="login()">
+          <span class="ion-ios-unlocked-outline"></span> Login
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

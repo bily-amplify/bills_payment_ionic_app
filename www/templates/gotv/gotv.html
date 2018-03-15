@@ -1,0 +1,131 @@
+<ion-view view-title="GoTV">
+    <ion-content>
+        <div class="bar bar-header item-input-inset">
+            <h4 class="title">GoTV Payment</h4>
+        </div>
+        <form ng-submit="confirmGotvPayment()" role="form" ng-hide="isSubscription">
+            <div class="list">
+                <label class="item item-input">
+                    <label class="input-label">
+                        <ion-checkbox class="checkbox-balanced" ng-model="isSubscription"/> Recurring Subscription
+                    </label>
+                </label>
+                <label class="item item-input item-select">
+                    <span class="input-label">Package</span>
+                    <select name="package" ng-model="gotvForm.selectedPackage" ng-options="package as package.name for package in packages"
+                            ng-change="setAmount();" class="form-control" required>
+                        <option value="">Select Package</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Amount</span>
+                    <input type="text" name="amount" ng-model="gotvForm.amount" required="required" readonly/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Card Number</span>
+                    <input name="reference_no" ng-model="gotvForm.reference_no" required="required" type="text"/>
+                </label>
+                <div ng-hide="isAuthenticated()">
+                    <label class="item item-input">
+                        <span class="input-label">Full Name</span>
+                        <input type="text" name="full_name" ng-model="gotvForm.full_name" ng-required="!isAuthenticated()"/>
+                    </label>
+                    <label class="item item-input">
+                        <label class="input-label">Mobile Phone</label>
+                        <input type="text" name="phone_number" ng-model="gotvForm.phone_number" ng-required="!isAuthenticated()" class="form-control"/>
+                    </label>
+                    <label class="item item-input">
+                        <label class="input-label">Email</label>
+                        <input type="email" name="email" ng-model="gotvForm.email" ng-required="!isAuthenticated()" class="form-control"/>
+                    </label>
+                </div>
+                <label class="item">
+                    <button class="button button-block button-balanced" type="submit">Continue</button>
+                </label>
+            </div>
+        </form>
+        <!--subscription form-->
+        <form ng-submit="confirmSubscription()" role="form" ng-show="isSubscription">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">
+                        <ion-checkbox class="checkbox-balanced" ng-model="isSubscription" /> Recurring Subscription
+                    </span>
+                </label>
+                <label class="item item-input item-select">
+                    <span class="input-label">Package</span>
+                    <select name="package" ng-model="subscriptionForm.selectedPackage" ng-options="package as package.name for package in packages"
+                            ng-change="setSubscriptionAmount();" class="form-control" required>
+                        <option value="">Select Package</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Amount</span>
+                    <label class="item-input">
+                        <input type="text" name="amount" ng-model="subscriptionForm.amount" required="required" class="form-control" readonly/>
+                    </label>
+                </label>
+                <label class="item item-input item-select">
+                    <span class="input-label">Frequency</span>
+                    <select name="frequency" ng-model="subscriptionForm.selectedFrequency"
+                            ng-options="f as f.name for f in subscriptionFrequencies" ng-change="updateFrequencyMultiples()" required>
+                        <option value="">Select Frequency</option>
+                    </select>
+                </label>
+                <label class="item">
+                    <span>For How Long?</span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">
+                        <label class="toggle">
+                            <input name="infinite" type="checkbox" ng-model="subscriptionForm.infinite"/>
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </span>
+                    <label class="item-input">
+                        Subscribe Me Until I Cancel
+                    </label>
+                </label>
+                <label class="item item-input item-select" ng-hide="subscriptionForm.infinite">
+                    <span class="input-label">Duration</span>
+                    <select  name="duration" ng-model="subscriptionForm.duration" ng-required="!subscriptionForm.infinite"
+                             ng-options="m for m in frequencyMultiples">
+                        <option value="">Select Duration</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">
+                        <label class="toggle toggle-balanced">
+                            <input type="checkbox" ng-model="subscriptionForm.immediately" />
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </span>
+                    <label class="item-input">
+                        Subscribe Immediately
+                    </label>
+                </label>
+                <label class="item item-input" ng-hide="subscriptionForm.immediately">
+                    <span class="input-label">Start Date</span>
+                    <label class="item-input">
+                        <input type="date" class="form-control" ng-model="subscriptionForm.start_date"
+                               ng-required="!subscriptionForm.immediately" pick-a-date="date"
+                               pick-a-date-options="{ format: 'dd-mm-yyyy', closeOnSelect: true }"/>
+                    </label>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Card Number</span>
+                    <label class="item-input">
+                        <input type="text" name="reference_no" ng-model="subscriptionForm.reference_no" required="required"/>
+                    </label>
+                </label>
+            </div>
+            <label class="item">
+                <button class="button button-block button-balanced" type="submit">Continue</button>
+            </label>
+        </form>
+    </ion-content>
+</ion-view>

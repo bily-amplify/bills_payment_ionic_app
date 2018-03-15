@@ -1,0 +1,57 @@
+.full-width
+{
+    width: 100%;
+}
+.label
+{
+    padding: 5px;
+    color: white;
+}
+.label-success
+{
+    background-color: green;
+}
+.label-warning
+{
+    background-color: pink;
+}
+.label-danger
+{
+    background-color: red;
+}
+.label-info
+{
+    background-color: cornflowerblue;
+}
+/*.scroll-content {*/
+    /*background: url(../img/bg.png);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size:cover !important;*/
+    /*background-position: center;*/
+/**/
+/*}*/
+.home-bg {
+    background: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-size:cover !important;
+    background-position: center;
+
+}
+.menu-item, .menu-item:hover, .menu-item:active, .menu-item:focus, .menu-item:visited
+{
+    padding: 0 !important;
+    background-color: transparent !important;
+    border:  none !important;
+    color: #FFFFFF !important;
+    text-align: center !important;
+}
+.menu-item > img
+{
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 0px solid #000000;
+    -webkit-box-shadow: -1px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: -1px 0px 10px 0px rgba(0,0,0,0.75);
+}

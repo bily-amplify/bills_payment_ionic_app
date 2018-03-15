@@ -1,0 +1,62 @@
+<h1 class="text-center">Manage Subscriptions</h1>
+<table class="table table-responsive table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Reference No.</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="subscription in subscriptions">
+            <td>{{subscription.id}}</td>
+            <td>{{subscription.description}}</td>
+            <!--<td>{{subscription.start_date}}</td>-->
+            <!--<td ng-hide="subscription.infinite">{{subscription.end_date}}</td>-->
+            <!--<td ng-show="subscription.infinite">Infinite/Continous</td>-->
+            <td>{{subscription.reference_no}}</td>
+            <td>{{subscription.amount | currency: 'NGN'}}</td>
+            <td ng-show="subscription.paused"><label class="label label-warning">PAUSED</label></td>
+            <td ng-show="subscription.active"><label class="label label-success">ACTIVE</label></td>
+            <td ng-show="subscription.cancelled"><label class="label label-danger">CANCELLED</label></td>
+            <td>
+                <a ng-href="#/app/subscriptions/show/{{subscription.id}}" class="btn btn-primary btn-sm">Show</a>
+                <a ui-sref="app.subscriptions_edit({id: subscription.id})" class="btn btn-primary btn-sm" type="button" ng-hide="subscription.cancelled">Edit</a>
+                <a ui-sref="app.subscription_transactions({id: subscription.id})" class="btn btn-primary btn-sm" type="button" ng-hide="subscription.cancelled">Transactions</a>
+                <button ng-show="subscription.active"
+                        class="btn btn-warning btn-sm"
+                        mwl-confirm
+                        title="Pause Subscription"
+                        message="Pause {{subscription.description}}?"
+                        confirm-text="Yes"
+                        cancel-text="Cancel"
+                        placement="bottom"
+                        on-confirm="subscription.pause()"
+                        on-cancel=""
+                        confirm-button-type="warning"
+                        cancel-button-type="default">
+                    Pause
+                </button>
+                <a ng-click="subscription.resume()" class="btn btn-success btn-sm" ng-show="subscription.paused">Resume</a>
+                <button ng-hide="subscription.cancelled"
+                        class="btn btn-danger btn-sm"
+                        mwl-confirm
+                        title="Cancel Subscription"
+                        message="Cancel {{subscription.description}}?"
+                        confirm-text="Yes"
+                        cancel-text="Cancel"
+                        placement="bottom"
+                        on-confirm="subscription.cancel()"
+                        on-cancel=""
+                        confirm-button-type="danger"
+                        cancel-button-type="default">
+                    Cancel
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p class="label-warning" ng-hide="subscriptions.length">You have no subcription yet.</p>

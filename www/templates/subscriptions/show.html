@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <h4 class="text-center"><strong>Subscription: {{subscription.description}}</strong></h4>
+    <table class="table table-responsive table-striped">
+        <tr>
+            <td>Description</td>
+            <td>{{subscription.description}}</td>
+        </tr>
+        <tr>
+            <td>Reference No</td>
+            <td>{{subscription.reference_no}}</td>
+        </tr>
+        <tr>
+            <td>Amount</td>
+            <td>{{subscription.amount | currency: 'NGN'}}</td>
+        </tr>
+        <tr>
+            <td>Frequency</td>
+            <td>{{subscription.frequency}}</td>
+        </tr>
+        <tr>
+            <td>Start Date</td>
+            <td>{{subscription.start_date}}</td>
+        </tr>
+        <tr ng-hide="subscription.infinite">
+            <td>End Date</td>
+            <td>{{subscription.end_date}}</td>
+        </tr>
+        <tr ng-show="subscription.infinite">
+            <td>End Date</td>
+            <td>Infinite/Continous</td>
+        </tr>
+    </table>
+    <div class="text-center">
+        <a ui-sref="app.subscriptions_edit({id: subscription.id})" class="btn btn-success btn-block" type="button">Edit</a>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<ion-view view-title="Confirm Smile Payment">
+    <ion-content>
+        <div class="bar bar-header item-input-inset">
+            <h4 class="title">Confirm Smile Payment</h4>
+        </div>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Full Name</span>
+                <strong>{{isAuthenticated() ? current_user.full_name : currentTransaction.full_name}}</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <strong>{{isAuthenticated() ? current_user.email : currentTransaction.email}}</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Phone Number</span>
+                <strong>{{isAuthenticated() ? current_user.phone_number :  currentTransaction.phone_number}}</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Smile Account No.</span>
+                <strong>{{currentTransaction.reference_no}}</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Smile Package</span>
+                <strong>{{currentTransaction.package.name}}</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Amount</span>
+                <strong>{{currentTransaction.package.amount | currency: 'NGN'}}</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Frequency</span>
+                <strong>{{currentTransaction.frequency}}</strong>
+            </label>
+            <label class="item item-input" ng-hide="currentTransaction.infinite">
+                <span class="input-label">Duration</span>
+                <strong>{{currentTransaction.duration}}</strong>
+            </label>
+            <label class="item item-input" ng-show="currentTransaction.infinite">
+                <span class="input-label">Duration</span>
+                <strong>Infinite/Continous</strong>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Start Date</span>
+                <strong>{{ currentTransaction.start_date | amDateFormat:'dddd, MMMM Do YYYY' }}</strong>
+            </label>
+            <label class="item item-input" ng-hide="currentTransaction.infinite">
+                <span class="input-label">End Date</span>
+                <strong>{{ currentTransaction.end_date | amDateFormat:'dddd, MMMM Do YYYY' }}</strong>
+            </label>
+            <label class="item item-input" ng-show="currentTransaction.infinite">
+                <span class="input-label">End Date</span>
+                <strong>Infinite/Continous</strong>
+            </label>
+            <label class="item" ng-show="!hasPreviousTransactions && !currentTransaction.immediately">
+                <div  class="text-center" style="color: orange;border: solid 2px orange;padding: 10px">
+                    <strong>NGN20 Subscription Setup Charge is Applied for First Time Transaction.</strong>
+                </div>
+            </label>
+            <label class="item">
+                <button class="button button-block button-balanced" ng-click="createSubscription()">Finish</button>
+            </label>
+        </div>
+    </ion-content>
+</ion-view>

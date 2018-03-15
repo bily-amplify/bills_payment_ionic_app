@@ -1,0 +1,37 @@
+{
+  "name": "angular-inflector",
+  "version": "0.2.4",
+  "authors": [
+    "Ignacio Baixas <ignacio@platan.us>"
+  ],
+  "description": "Angular inflection library",
+  "license": "MIT",
+  "homepage": "https://github.com/platanus/angular-inflector",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/platanus/angular-inflector.git"
+  },
+  "main": "./dist/angular-inflector.min.js",
+  "ignore": [
+    "**/.*",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "package.json",
+    "test",
+    "src",
+    ".travis.yml"
+  ],
+  "devDependencies": {
+    "angular": "*",
+    "angular-mocks": "*"
+  },
+  "_release": "0.2.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.4",
+    "commit": "0fa4e1851aa1d923038b170fbb7628cd7502c9d8"
+  },
+  "_source": "https://github.com/iobaixas/angular-inflector.git",
+  "_target": "~0.2.0",
+  "_originalSource": "angular-inflector"
+}
